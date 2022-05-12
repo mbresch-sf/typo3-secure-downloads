@@ -23,6 +23,7 @@ use Bitmotion\SecureDownloads\Resource\Event\OutputInitializationEvent;
 use Bitmotion\SecureDownloads\Utility\HookUtility;
 use Bitmotion\SecureDownloads\Utility\MimeTypeUtility;
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
@@ -164,7 +165,7 @@ class FileDelivery
             $data = DecodeCache::getCache($jwt);
         } else {
             try {
-                $data = JWT::decode($jwt, $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'], ['HS256']);
+                $data = JWT::decode($jwt, new Key($GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'], 'HS256'));
                 DecodeCache::addCache($jwt, $data);
             } catch (\Exception $exception) {
                 $this->exitScript($exception->getMessage());

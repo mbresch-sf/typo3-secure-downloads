@@ -28,7 +28,7 @@
     "typo3/cms-core": "^9.5.17 || ^10.4.2",
     "typo3/cms-extbase": "^9.5.17 || ^10.4.2",
     "typo3/cms-frontend": "^9.5.17 || ^10.4.2",
-    "firebase/php-jwt": "^5.0",
+    "firebase/php-jwt": "^6.1",
     "ext-pdo": "*"
   },
   "suggest": {
@@ -46,6 +46,12 @@
   "extra": {
     "typo3/cms": {
       "extension-key": "secure_downloads"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
     }
   }
 }
